@@ -1,12 +1,12 @@
   :root {
-    --ink: #0F1B2D;
-    --paper: #EDF1F0;
-    --panel: #F8FAF9;
-    --teal: #1F6F5C;
-    --teal-deep: #154A3E;
-    --amber: #C97B2E;
-    --line: #D3D9D6;
-    --muted: #51606A;
+    --ink: #E7EEEC;
+    --paper: #0A121C;
+    --panel: #121D2B;
+    --teal: #2FA98C;
+    --teal-deep: #5CDCBB;
+    --amber: #E39A52;
+    --line: #223145;
+    --muted: #93A4AF;
     --max: 760px;
     --wide: 1120px;
   }
@@ -35,7 +35,7 @@
     margin: 0;
     background: var(--paper);
     color: var(--ink);
-    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     font-size: 16px;
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
@@ -44,8 +44,8 @@
   h1,
   h2,
   h3 {
-    font-family: 'Fraunces', Georgia, serif;
-    font-weight: 500;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 700;
     color: var(--ink);
     margin: 0;
     letter-spacing: -0.01em;
@@ -67,7 +67,7 @@
   }
 
   .mono {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   }
 
   /* ---------- Layout shell ---------- */
@@ -92,7 +92,7 @@
   }
 
   .rail-top .mark {
-    font-family: 'Fraunces', serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     font-size: 1.3rem;
     font-weight: 600;
     margin-bottom: 0.2rem;
@@ -168,7 +168,7 @@
   }
 
   .section-label {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
     font-size: 0.78rem;
     color: var(--teal-deep);
     margin-bottom: 0.9rem;
@@ -188,6 +188,49 @@
   #hero h1 {
     font-size: clamp(2.4rem, 4.6vw, 4.1rem);
     line-height: 1.03;
+  }
+
+  .hero-typed {
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    font-weight: 600;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  .hero-typed .typed-text {
+    color: var(--ink);
+  }
+
+  .hero-typed .type-cursor {
+    display: inline-block;
+    width: 0.09em;
+    height: 0.85em;
+    margin-left: 0.06em;
+    background: var(--amber);
+    vertical-align: -0.08em;
+    animation: caret-blink 1s step-end infinite;
+  }
+
+  @keyframes caret-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .hero-name {
+    margin-top: 0.6rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.5rem, 2.4vw, 2rem);
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  @media (max-width: 600px) {
+    .hero-typed {
+      white-space: normal;
+      font-size: clamp(1.5rem, 6vw, 2.2rem);
+    }
   }
 
   #hero .tagline {
@@ -210,9 +253,18 @@
     flex-wrap: wrap;
   }
 
+  .stats-note {
+    margin-top: 0.9rem;
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    opacity: 0.8;
+  }
+
   .stat b {
     display: block;
-    font-family: 'Fraunces', serif;
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    font-weight: 600;
     font-size: 2.1rem;
     color: var(--teal-deep);
     line-height: 1;
@@ -221,16 +273,7 @@
   .stat span {
     font-size: 0.78rem;
     color: var(--muted);
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  .stats-updated {
-    margin-top: 0.9rem;
-    font-size: 0.72rem;
-    color: var(--muted);
-    font-family: 'IBM Plex Mono', monospace;
-    opacity: 0.75;
-    min-height: 1em;
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   }
 
   /* ---------- About ---------- */
@@ -263,7 +306,7 @@
     background-position: center;
     background-color: var(--panel);
     border: 1px solid var(--line);
-    box-shadow: 0 16px 26px -16px rgba(15, 27, 45, 0.4), 0 3px 6px rgba(15, 27, 45, 0.06);
+    box-shadow: 0 16px 30px -14px rgba(0, 0, 0, 0.65), 0 3px 6px rgba(0, 0, 0, 0.35);
     transition: transform 0.95s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.95s cubic-bezier(0.19, 1, 0.22, 1);
     will-change: transform;
   }
@@ -282,13 +325,13 @@
 
   .photo-stack:hover .photo-front {
     transform: rotate(8deg) translate(42px, 28px) scale(0.92);
-    box-shadow: 0 8px 14px -10px rgba(15, 27, 45, 0.3);
+    box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.55);
     z-index: 1;
   }
 
   .photo-stack:hover .photo-back {
     transform: rotate(0deg) translate(0, 0) scale(1.02);
-    box-shadow: 0 22px 34px -16px rgba(15, 27, 45, 0.45), 0 4px 8px rgba(15, 27, 45, 0.08);
+    box-shadow: 0 22px 38px -14px rgba(0, 0, 0, 0.7), 0 4px 10px rgba(0, 0, 0, 0.4);
     z-index: 2;
   }
 
@@ -340,7 +383,7 @@
   }
 
   .tl-date {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
     font-size: 0.78rem;
     color: var(--amber);
     display: block;
@@ -348,9 +391,9 @@
   }
 
   .tl-role {
-    font-family: 'Fraunces', serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     font-size: 1.25rem;
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 0.15rem;
   }
 
@@ -362,7 +405,7 @@
 
   .tl-item p {
     max-width: var(--max);
-    color: #1c2733;
+    color: var(--ink);
     margin: 0;
   }
 
@@ -376,7 +419,7 @@
   }
 
   .year-heading {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
     font-size: 0.85rem;
     color: var(--muted);
     margin-bottom: 1rem;
@@ -411,7 +454,7 @@
 
   .paper-link {
     white-space: nowrap;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
     font-size: 0.8rem;
     color: var(--teal-deep);
     text-decoration: none;
@@ -432,7 +475,7 @@
 
   .citation-note b {
     color: var(--teal-deep);
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   }
 
   /* ---------- Skills ---------- */
@@ -444,7 +487,7 @@
 
   .skill-group h3 {
     font-size: 0.82rem;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
     font-weight: 400;
     color: var(--teal-deep);
     margin-bottom: 0.8rem;
@@ -462,7 +505,7 @@
     border: 1px solid var(--line);
     border-radius: 3px;
     background: var(--panel);
-    color: #1c2733;
+    color: var(--ink);
   }
 
   /* ---------- Education ---------- */
@@ -475,7 +518,8 @@
   }
 
   .ed-degree {
-    font-family: 'Fraunces', serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 600;
     font-size: 1.2rem;
   }
 
@@ -486,7 +530,7 @@
   }
 
   .ed-meta {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
     font-size: 0.78rem;
     color: var(--amber);
     margin-top: 0.4rem;
@@ -526,7 +570,7 @@
   }
 
   .misc-block h3 {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
     font-size: 0.82rem;
     font-weight: 400;
     color: var(--teal-deep);
@@ -547,7 +591,7 @@
   }
 
   .misc-date {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
     font-size: 0.75rem;
     color: var(--muted);
     display: block;
@@ -596,7 +640,7 @@
     padding-bottom: 3rem;
     font-size: 0.78rem;
     color: var(--muted);
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   }
 
   /* ---------- Mobile ---------- */
@@ -622,13 +666,13 @@
     }
 
     .mobile-bar .mark {
-      font-family: 'Fraunces', serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       font-weight: 600;
       font-size: 1.05rem;
     }
 
     .mobile-bar select {
-      font-family: 'IBM Plex Mono', monospace;
+      font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
       font-size: 0.8rem;
       background: var(--panel);
       border: 1px solid var(--line);
