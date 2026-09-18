@@ -224,6 +224,15 @@
     font-family: 'IBM Plex Mono', monospace;
   }
 
+  .stats-updated {
+    margin-top: 0.9rem;
+    font-size: 0.72rem;
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    opacity: 0.75;
+    min-height: 1em;
+  }
+
   /* ---------- About ---------- */
   #about p {
     margin: 0 0 1.1rem;

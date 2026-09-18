@@ -29,8 +29,51 @@
     });
   });
 
+  // Pull live Google Scholar stats (papers / h-index / citations) from
+  // data/citations.json, which is kept fresh by a scheduled GitHub Action
+  // (see .github/workflows/update-citations.yml). If the fetch fails for
+  // any reason, the hardcoded data-target values already in the HTML are
+  // used as a fallback, so the page never breaks or shows blanks.
+  async function loadLiveCitationStats(){
+    try{
+      const res = await fetch('data/citations.json', {cache: 'no-store'});
+      if(!res.ok) throw new Error('citations.json fetch failed: ' + res.status);
+      const data = await res.json();
+
+      const fieldByStat = {papers: 'papers', hindex: 'h_index', citations: 'citations'};
+      document.querySelectorAll('.count-up[data-stat]').forEach((el) => {
+        const field = fieldByStat[el.getAttribute('data-stat')];
+        const value = field ? data[field] : undefined;
+        if(typeof value === 'number' && !Number.isNaN(value)){
+          el.setAttribute('data-target', value);
+        }
+      });
+
+      const citationCountEl = document.getElementById('citation-count');
+      if(citationCountEl && typeof data.citations === 'number'){
+        citationCountEl.textContent = data.citations;
+      }
+
+      const updatedEl = document.getElementById('stats-updated');
+      if(updatedEl && data.updated_at){
+        const d = new Date(data.updated_at);
+        if(!Number.isNaN(d.getTime())){
+          const formatted = d.toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric'});
+          updatedEl.textContent = 'Stats auto-updated from Google Scholar · ' + formatted;
+        }
+      }
+    } catch(err){
+      console.warn('Live citation stats unavailable, showing fallback values.', err);
+    }
+  }
+
   // Hero stat count-up animation
-  (function(){
+  (async function(){
+    // Wait for (or fail past) the live-stats fetch before reading
+    // data-target, so the animation counts up to the current numbers
+    // rather than the hardcoded fallback and then silently jumping.
+    await loadLiveCitationStats();
+
     const nodes = document.querySelectorAll('.count-up');
     if(!nodes.length) return;
 
